@@ -4,8 +4,33 @@ import sys
 import subprocess
 import hcl2
 
+"""
+This script loads a json file that
+is created via python-hcl2 and
+extracts the variable names and defaults
+and writes them to a tfvars.json file.
 
-path = sys.argv[1]
+The file can be prefixed with dev|prod|etc
+
+Setup:
+
+Install python-hcl2 with using pip
+
+Usage:
+
+1. Convert hcl file using hcl2tojson
+
+2. Extract the vars and defaults with this script
+
+./tf-extract.py source.json <PREFIX> 
+
+The destination file is created in the current directory, attached with the prefix. 
+"""
+
+errmsg = "Need to install hcl2tojson package!"
+
+# path to tf variables file
+path   = sys.argv[1]
 prefix = sys.argv[2]
 
 def load_hcl2(path):
